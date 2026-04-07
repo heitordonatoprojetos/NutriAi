@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "NutriAI",
+    "slug": "nutriai",
+    "version": "1.0.1",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nutriai.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Precisamos da câmera para reconhecer alimentos por foto.",
+        "NSUserNotificationsUsageDescription": "Usamos notificações para lembrar água e refeições."
+      }
+    },
+    "android": {
+      "package": "com.nutriai.app",
+      "permissions": [
+        "CAMERA",
+        "POST_NOTIFICATIONS"
+      ]
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-camera",
+      "expo-notifications",
+      "expo-sqlite",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "kotlinVersion": "1.9.25",
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35
+          }
+        }
+      ]
+    ]
+  }
+}
