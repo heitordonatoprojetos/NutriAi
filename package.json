@@ -23,6 +23,7 @@
     "expo-sqlite": "~15.2.14",
     "expo-file-system": "~18.1.11",
     "expo-sharing": "~13.1.5",
-    "expo-print": "~14.1.4"
+    "expo-print": "~14.1.4",
+    "expo-asset": "~11.1.7"
   }
 }
