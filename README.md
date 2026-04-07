@@ -20,6 +20,9 @@ npm install
 npm start
 ```
 
+> `npm start` agora abre direto no **web**.  
+> Para fluxo mobile, use `npm run start:native`.
+
 ## Plataformas
 
 ```bash

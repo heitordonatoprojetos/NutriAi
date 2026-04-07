@@ -4,9 +4,10 @@
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "npm run check:deps && expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "start": "npm run check:deps && expo start --web",
+    "start:native": "npm run check:deps && expo start",
+    "android": "npm run check:deps && expo start --android",
+    "ios": "npm run check:deps && expo start --ios",
     "web": "expo start --web",
     "check:deps": "node scripts/check-deps.js"
   },
