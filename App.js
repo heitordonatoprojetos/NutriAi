@@ -47,6 +47,46 @@ const baseFoods = [
   { name: 'Aveia', kcal100g: 389 },
   { name: 'Iogurte natural', kcal100g: 61 },
   { name: 'Batata doce', kcal100g: 86 },
+  { name: 'Maçã', kcal100g: 52 },
+  { name: 'Pera', kcal100g: 57 },
+  { name: 'Mamão', kcal100g: 43 },
+  { name: 'Abacate', kcal100g: 160 },
+  { name: 'Salmão', kcal100g: 208 },
+  { name: 'Tilápia', kcal100g: 129 },
+  { name: 'Carne bovina magra', kcal100g: 217 },
+  { name: 'Patinho moído', kcal100g: 219 },
+  { name: 'Tofu', kcal100g: 76 },
+  { name: 'Queijo minas', kcal100g: 264 },
+  { name: 'Queijo cottage', kcal100g: 98 },
+  { name: 'Leite desnatado', kcal100g: 34 },
+  { name: 'Arroz integral cozido', kcal100g: 124 },
+  { name: 'Macarrão integral cozido', kcal100g: 124 },
+  { name: 'Pão integral', kcal100g: 247 },
+  { name: 'Tapioca', kcal100g: 130 },
+  { name: 'Cuscuz cozido', kcal100g: 112 },
+  { name: 'Lentilha cozida', kcal100g: 116 },
+  { name: 'Grão-de-bico cozido', kcal100g: 164 },
+  { name: 'Ervilha cozida', kcal100g: 84 },
+  { name: 'Brócolis cozido', kcal100g: 35 },
+  { name: 'Cenoura cozida', kcal100g: 35 },
+  { name: 'Abobrinha cozida', kcal100g: 24 },
+  { name: 'Tomate', kcal100g: 18 },
+  { name: 'Alface', kcal100g: 15 },
+  { name: 'Castanha-do-pará', kcal100g: 656 },
+  { name: 'Amendoim', kcal100g: 567 },
+  { name: 'Pasta de amendoim', kcal100g: 588 },
+  { name: 'Azeite de oliva', kcal100g: 884 },
+  { name: 'Granola', kcal100g: 471 },
+  { name: 'Whey protein', kcal100g: 400 },
+  { name: 'Iogurte grego', kcal100g: 97 },
+  { name: 'Atum em água', kcal100g: 116 },
+  { name: 'Sardinha', kcal100g: 208 },
+  { name: 'Pão francês', kcal100g: 270 },
+  { name: 'Biscoito integral', kcal100g: 430 },
+  { name: 'Chocolate 70%', kcal100g: 598 },
+  { name: 'Mel', kcal100g: 304 },
+  { name: 'Suco de laranja', kcal100g: 45 },
+  { name: 'Café com leite', kcal100g: 40 },
 ];
 
 const inferCalories = (name, grams) => {
@@ -383,14 +423,23 @@ export default function App() {
       <Card title="Água">
         <Text style={styles.kpi}>{(waterMl / 1000).toFixed(1)} / {(profile.waterGoalMl / 1000).toFixed(1)} L</Text>
         <Progress value={waterMl} max={profile.waterGoalMl} color="#00A8FF" />
-        <View style={styles.rowWrap}>{[200, 300, 500].map((m) => <Pill key={m} label={`+${m}ml`} onPress={() => setWaterMl((w) => w + m)} />)}</View>
+        <View style={styles.rowWrap}>
+          {[-500, -300, -200, 200, 300, 500].map((m) => (
+            <Pill
+              key={m}
+              label={`${m > 0 ? '+' : ''}${m}ml`}
+              onPress={() => setWaterMl((w) => Math.max(0, w + m))}
+              active={m > 0}
+            />
+          ))}
+        </View>
       </Card>
 
       <Card title="Refeições" right={<CTA small primary label="+ Adicionar" onPress={() => setFoodModal(true)} />}>
         {mealNames.map((meal) => (
           <View key={meal} style={styles.mealBlock}>
             <View style={styles.rowBetween}><Text style={styles.mealTitle}>{meal}</Text><Text style={styles.smallMuted}>{mealTotals[meal]} kcal</Text></View>
-            {meals[meal].slice(0, 4).map((item, idx) => (
+            {meals[meal].map((item, idx) => (
               <View key={`${meal}-${idx}`} style={styles.rowBetween}>
                 <Text style={styles.foodText}>{item.food} • {item.grams}g</Text>
                 <TouchableOpacity onPress={() => removeFoodItem(meal, idx)}><Text style={styles.remove}>remover</Text></TouchableOpacity>

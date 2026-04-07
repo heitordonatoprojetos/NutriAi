@@ -3,8 +3,10 @@
 Aplicativo Expo/React Native com foco em UX moderna:
 - onboarding visual,
 - dashboard com cards interativos e barras de progresso,
+- ajustes rápidos de água para **somar e diminuir** consumo,
 - captura por câmera com inferência dinâmica por IA,
 - edição de refeições com Open Food Facts + fallback IA,
+- catálogo base expandido com dezenas de alimentos para cadastro rápido,
 - login Google funcional,
 - persistência local por usuário com AsyncStorage,
 - exportação de PDF,
