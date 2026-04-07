@@ -51,3 +51,28 @@ Workflow: `.github/workflows/android-apk.yml`
 - `expo prebuild --platform android`
 - `./gradlew assembleDebug`
 - upload artifact `nutriai-v1.01-apk`
+
+## Erro: `Failed to resolve plugin for module "expo-camera"`
+
+Se aparecer esse erro ao rodar `npm start`:
+
+1. Apague dependências locais:
+```bash
+rm -rf node_modules package-lock.json
+```
+(Windows PowerShell)
+```powershell
+Remove-Item -Recurse -Force node_modules, package-lock.json
+```
+
+2. Reinstale:
+```bash
+npm install
+```
+
+3. Rode novamente:
+```bash
+npm start
+```
+
+O script `npm start` agora executa uma checagem prévia (`check:deps`) e mostra dependências nativas faltantes antes de abrir o Expo.
