@@ -29,7 +29,6 @@
     "plugins": [
       "expo-camera",
       "expo-notifications",
-      "expo-sqlite",
       [
         "expo-build-properties",
         {

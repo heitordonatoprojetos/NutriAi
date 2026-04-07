@@ -1,15 +1,14 @@
 # NutriAI (v1.01)
 
-Aplicativo Expo/React Native com:
-- onboarding completo,
-- dashboard interativa com barras de progresso,
-- câmera real + inferência dinâmica por IA para alimentos,
+Aplicativo Expo/React Native com foco em UX moderna:
+- onboarding visual,
+- dashboard com cards interativos e barras de progresso,
+- captura por câmera com inferência dinâmica por IA,
 - edição de refeições com Open Food Facts + fallback IA,
-- login Google para dados individuais,
-- persistência local com SQLite,
-- exportação de relatório PDF,
-- backup compartilhável para Google Drive,
-- notificações de água/refeições,
+- login Google funcional,
+- persistência local por usuário com AsyncStorage,
+- exportação de PDF,
+- backup para Google Drive (upload direto via API quando logado),
 - build de APK no GitHub Actions.
 
 ## Rodar
@@ -19,7 +18,7 @@ npm install
 npm start
 ```
 
-## Web / Android / iOS
+## Plataformas
 
 ```bash
 npm run web
@@ -27,9 +26,9 @@ npm run android
 npm run ios
 ```
 
-## Variáveis para Google Login
+## Google Login + Drive
 
-Crie `.env` (ou configure no ambiente Expo):
+Crie `.env` com:
 
 ```bash
 EXPO_PUBLIC_GOOGLE_EXPO_CLIENT_ID=...
@@ -38,41 +37,24 @@ EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID=...
 EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID=...
 ```
 
+> O app solicita escopos `profile`, `email` e `drive.file`.
+
 ## Backup no Drive
 
-No Perfil > Relatórios e backup > **Backup p/ Drive**.
-O app gera JSON e abre o compartilhamento nativo para salvar no Google Drive.
+No Perfil > **Salvar no Drive**:
+- se estiver logado no Google, envia backup JSON direto para o Google Drive;
+- se não estiver, abre fallback de compartilhamento manual.
+
+## Erro `Failed to resolve plugin for module "expo-camera"`
+
+No Windows PowerShell:
+
+```powershell
+Remove-Item -Recurse -Force node_modules, package-lock.json
+npm install
+npm start
+```
 
 ## APK a cada atualização
 
 Workflow: `.github/workflows/android-apk.yml`
-
-- `npm ci`
-- `expo prebuild --platform android`
-- `./gradlew assembleDebug`
-- upload artifact `nutriai-v1.01-apk`
-
-## Erro: `Failed to resolve plugin for module "expo-camera"`
-
-Se aparecer esse erro ao rodar `npm start`:
-
-1. Apague dependências locais:
-```bash
-rm -rf node_modules package-lock.json
-```
-(Windows PowerShell)
-```powershell
-Remove-Item -Recurse -Force node_modules, package-lock.json
-```
-
-2. Reinstale:
-```bash
-npm install
-```
-
-3. Rode novamente:
-```bash
-npm start
-```
-
-O script `npm start` agora executa uma checagem prévia (`check:deps`) e mostra dependências nativas faltantes antes de abrir o Expo.

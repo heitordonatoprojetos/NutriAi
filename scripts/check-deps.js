@@ -1,10 +1,11 @@
 const required = [
   'expo-camera',
   'expo-notifications',
-  'expo-sqlite',
   'expo-file-system',
   'expo-sharing',
   'expo-print',
+  '@react-native-async-storage/async-storage',
+  'expo-linear-gradient',
 ];
 
 const missing = [];
